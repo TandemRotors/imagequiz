@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Result</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .header-container {
+            margin: auto; /* Add margin to the header container to push it down */
+        }
+
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            max-width: 1000%; /* Adjust the max-width to control the size of the container */
+            text-align: center;
+            margin: auto; /* Center the container horizontally */
+        }
+
+        .image {
+            max-width: 100%; /* Ensure each image doesn't exceed the available space */
+            border: 1px solid #000; /* Add a border around each image */
+            cursor: pointer; /* Change cursor to pointer to indicate a clickable image */
+        }
+
+        /* Increase the image size */
+        .image img {
+            width: 400px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Hello, {{ user_name }}!</h1>
+        <h2>Make a Selection</h2>
+        <h2>Which video is showing the correct movement?:</h2>
+    </div>
+    <div class="image-container">
+        {% for image in images %}
+            <a href="/store_selection/{{ user_name }}/{{ image }}">
+                <img class="image" src="{{ url_for('static', filename='images/' + image) }}" alt="Image">
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
